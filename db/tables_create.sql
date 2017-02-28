@@ -74,10 +74,10 @@ CREATE TABLE savedAds (
 	username VARCHAR(20),
 	rID INTEGER,
 	PRIMARY KEY (username,rID),
-	FOREIGN KEY (rID) REFERENCES Rental(rID)
+	FOREIGN KEY (rID) REFERENCES rental(rID)
 		ON DELETE CASCADE 
 		ON UPDATE CASCADE, 
-	FOREIGN KEY (username) REFERENCES Users(username)
+	FOREIGN KEY (username) REFERENCES users(username)
 		ON DELETE CASCADE 
 		ON UPDATE CASCADE 
 
@@ -92,10 +92,10 @@ CREATE TABLE report (
 	reportType VARCHAR(25),
 	description VARCHAR(100),
 	PRIMARY KEY (username, timeAdded),
-	FOREIGN KEY (rID) REFERENCES Rental(rID)
+	FOREIGN KEY (rID) REFERENCES rental(rID)
 		ON DELETE CASCADE 
 		ON UPDATE CASCADE, 
-	FOREIGN KEY (username) REFERENCES Users(username)
+	FOREIGN KEY (username) REFERENCES users(username)
 		ON DELETE CASCADE 
 		ON UPDATE CASCADE 
 
