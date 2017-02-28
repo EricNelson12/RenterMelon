@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Rental {
 	
+	//Properties//
 	public enum area {
 		BlackMountain,DilworthMountain,Ellison,Glenmore,
 		JoeRich,KelownaNorth,KelownaSouth,LowerMission,NorthGlenmore,RutlandNorth,
@@ -16,7 +17,12 @@ public class Rental {
 	
 	//Note sql.Date is used instead of util.Date
 	private Date date;
-
+	
+	
+	
+	
+	//Setters and Getters	
+	
 	public String getTitle() {
 		return title;
 	}
