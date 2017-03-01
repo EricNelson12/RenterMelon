@@ -1,6 +1,8 @@
 package main;
 
 import java.io.IOException;
+
+import scrapers.CastanetScraper;
 import scrapers.KijijiScraper;
 
 public class Scheduler {
@@ -9,6 +11,9 @@ public class Scheduler {
 		
 		KijijiScraper ks = new KijijiScraper();
 		ks.scrapeAll();
+		
+		CastanetScraper cc = new CastanetScraper();
+		cc.scrapeAll();
 	}
 
 }
