@@ -12,7 +12,7 @@ public class Rental {
 	}
 	
 	private int Rid;
-	private float price;
+	private String price;
 	private String title, description,address,link;
 	
 	//Note sql.Date is used instead of util.Date
@@ -55,11 +55,11 @@ public class Rental {
 		this.link = link;
 	}
 
-	public float getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
