@@ -16,7 +16,7 @@ public class Scheduler {
 		KijijiScraper ks = new KijijiScraper();
 		Database db = new Database();
 		db.getConnection();
-		db.addRentals(ks.scrapeAll());
+		db.addRentals(ks.scrapeAll()); 
 
 		//KijijiScraper ks = new KijijiScraper();
 		//ks.scrapeAll();
