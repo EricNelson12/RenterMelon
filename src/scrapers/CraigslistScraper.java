@@ -26,7 +26,7 @@ public class CraiglistScraper implements Scraper {
 		for(Element element: elements){
 			Rental R = new Rental();
 			R.setPrice(element.select(".result-price").text());
-			R.setAddress(element.select(".nearbyArea").text());
+			R.setAddress(element.select(".nearby").text());
 			R.setTitle(element.select(".title").text());
 			
 			
