@@ -33,7 +33,7 @@ public class CraiglistScraper implements Scraper {
 			rentals.add(R);
 		}
 		
-		
+		/*
 		for(Rental r : rentals){
 			System.out.println(r.getTitle());
 			System.out.println(r.getAddress());
@@ -41,6 +41,7 @@ public class CraiglistScraper implements Scraper {
 			
 			
 		}
+		*/
 		
 		
 		return rentals;
