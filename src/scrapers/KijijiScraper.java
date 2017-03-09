@@ -49,6 +49,9 @@ public class KijijiScraper implements Scraper {
 		Elements elements = doc.select(".info-container");
 
 		System.out.println("Connected to: " + doc.baseUri());
+		
+		
+		int k = 0;
 
 		// Explore all URLs to rentals on page
 		for (Element element : elements) {
@@ -76,6 +79,9 @@ public class KijijiScraper implements Scraper {
 
 			// Add to list of rentals
 			rentals.add(R);
+			System.out.printf("%.0f%%\n",(100*(float)k/(float)elements.size()));
+			k++;
+			
 
 		}
 

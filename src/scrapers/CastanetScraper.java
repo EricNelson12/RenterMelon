@@ -25,9 +25,13 @@ public class CastanetScraper implements Scraper {
 		
 		Contact C = new Contact();
 		Document Startdoc = Jsoup.connect("http://classifieds.castanet.net/cat/rentals/shared_and_roommates/").get();
+		
+		System.out.println("Connected to: " + Startdoc.baseUri());
 
 		Elements links = Startdoc.select("a.prod_container");
 
+		
+		int k = 0;
 		for (Element l : links) {
 			
 			Rental R = new Rental();
@@ -51,6 +55,7 @@ public class CastanetScraper implements Scraper {
 
 			// getting the data from the tables
 
+			
 			Elements td = doc.getElementsByTag("td");
 			for (int i = 0; i < td.size(); i++) {
 
@@ -91,6 +96,9 @@ public class CastanetScraper implements Scraper {
 			}
 			R.setContact(C);
 			rentals.add(R);
+			
+			System.out.printf("%.0f%%\n",(100*(float)k/(float)links.size()));
+			k++;
 		}
 		/*
 		 * testing patterns n shit
