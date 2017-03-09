@@ -1,8 +1,11 @@
 package scrapers;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,6 +19,25 @@ import main.Contact;
 import main.Rental;
 
 public class CastanetScraper implements Scraper {
+	
+	
+	public Date formatDate(String s) {
+		try {
+			DateFormat d1 = new SimpleDateFormat("MMM d, YYYY");
+			java.util.Date D1;
+			D1 = d1.parse(s);
+			DateFormat d2 = new SimpleDateFormat("YYYY-MM-dd");
+			String returnDate = d2.format(D1);
+			
+			return Date.valueOf(returnDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			System.out.println("oops");
+			return null;
+		}
+
+		
+	}
 
 	@Override
 	public ArrayList<Rental> scrapeAll() throws IOException {
@@ -23,14 +45,16 @@ public class CastanetScraper implements Scraper {
 
 		ArrayList<Rental> rentals = new ArrayList<Rental>();
 		
-		Contact C = new Contact();
-		Document Startdoc = Jsoup.connect("http://classifieds.castanet.net/cat/rentals/shared_and_roommates/").get();
+
+		Document Startdoc = Jsoup.connect("http://classifieds.castanet.net/cat/rentals/apartmentcondo/").get();
 
 		Elements links = Startdoc.select("a.prod_container");
 
 		for (Element l : links) {
 			
+			
 			Rental R = new Rental();
+			Contact C = new Contact();
 			
 			Document doc = Jsoup.connect(l.attr("abs:href")).get();
 
@@ -70,6 +94,10 @@ public class CastanetScraper implements Scraper {
 					// print it
 					R.setAddress(nxt);
 					// System.out.println("Address: " + nxt);
+					break;
+					
+				case "post date:":
+					R.setDate(formatDate(nxt));
 					break;
 
 				case "name:":
