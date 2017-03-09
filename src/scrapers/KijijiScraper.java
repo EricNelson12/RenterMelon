@@ -19,7 +19,9 @@ import main.Rental;
 public class KijijiScraper implements Scraper {
 
 	// Base URI
-	final private String URL = "http://www.kijiji.ca/b-house-rental/kelowna/c43l1700228";
+	//final private String URL = "http://www.kijiji.ca/b-house-rental/kelowna/c43l1700228";
+	final private String URL = "http://www.kijiji.ca/b-room-rental-roommate/kelowna/c36l1700228";
+	
 
 	// Index of attributes in table
 	final private int DATE = 0;

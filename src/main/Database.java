@@ -96,12 +96,21 @@ public class Database {
 			// addContact(r, auto_id);
 		}
 
-		conn.close();
+		
 	}
 	
 	public void clearAllRentals() throws SQLException{
 		Statement s = conn.createStatement();
 		s.execute("TRUNCATE TABLE rental");
+	}
+	
+	public void closeConnection(){
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void addContact(Rental r, int id) throws SQLException {

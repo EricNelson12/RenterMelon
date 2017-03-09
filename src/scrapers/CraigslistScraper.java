@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 
 import main.Rental;
 
-public class CraiglistScraper implements Scraper {
+public class CraigslistScraper implements Scraper {
 
 	@Override
 	public ArrayList<Rental> scrapeAll() throws IOException {
