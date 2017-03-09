@@ -5,15 +5,21 @@ import java.sql.Date;
 public class Rental {
 	
 	//Properties//
-	public enum area {
-		BlackMountain,DilworthMountain,Ellison,Glenmore,
-		JoeRich,KelownaNorth,KelownaSouth,LowerMission,NorthGlenmore,RutlandNorth,
-		RutlandSouth,KelownaSouthEast,SpringfieldSpall,UpperMission
-	}
 	
+
+//	private enum area {
+//		Kelowna,Penticton,BlackMountain,DilworthMountain,Ellison,Glenmore,
+//		JoeRich,KelownaNorth,KelownaSouth,LowerMission,NorthGlenmore,RutlandNorth,
+//		RutlandSouth,KelownaSouthEast,SpringfieldSpall,UpperMission
+//	}
+	
+	private String area = "Not available";	
 	private int Rid;
-	private String price;
-	private String title, description,address,link;
+	private String price = "Contact for price";
+	private String title = "Rental";
+	private String description = "No description available";
+	private String address = "Address not available";
+	private String link = "No link available";
 	
 	//Note sql.Date is used instead of util.Date
 	private Date date;
@@ -21,6 +27,12 @@ public class Rental {
 	private Contact owner;
 	
 	
+	@Override
+	public String toString(){
+		String s = String.format("Link:\t%s\nTitle:\t%s\nAddress:\t%s\nPrice:\t%s\nDescription:\t%s\nArea:\t%s\n", link,title,address,price,description,area);
+		return s;
+		
+	}
 	
 	
 	
@@ -91,6 +103,14 @@ public class Rental {
 
 	public void setContact(Contact c) {
 		this.owner = c;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
 	}
 
 	

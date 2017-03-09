@@ -33,15 +33,13 @@ public class CraiglistScraper implements Scraper {
 			rentals.add(R);
 		}
 		
-		/*
-		for(Rental r : rentals){
-			System.out.println(r.getTitle());
-			System.out.println(r.getAddress());
-			System.out.println(r.getPrice());
-			
-			
-		}
-		*/
+		
+//		for(Rental r : rentals){
+//			System.out.println(r.getTitle());
+//			System.out.println(r.getAddress());
+//			System.out.println(r.getPrice());
+//		}
+		
 		
 		
 		return rentals;
