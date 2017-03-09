@@ -57,7 +57,7 @@ public class KijijiScraper implements Scraper {
 			// Connect to url of individual ad
 			String link = element.select("a.title").attr("abs:href");
 			Document rentalPage = Jsoup.connect(link).get();
-			System.out.println("\n\nConnected to: " + rentalPage.baseUri());
+			//System.out.println("\n\nConnected to: " + rentalPage.baseUri());
 
 			// Get table with all of the attributes
 			Elements attributes = rentalPage.select(".ad-attributes tr td");
@@ -70,7 +70,7 @@ public class KijijiScraper implements Scraper {
 			setDate(attributes.get(DATE).text(), R);
 			setAddress(attributes.get(ADDRESS).text(), R);
 
-			System.out.println(R.toString());
+		//	System.out.println(R.toString());
 
 			// Add to list of rentals
 			rentals.add(R);
@@ -104,7 +104,7 @@ public class KijijiScraper implements Scraper {
 			java.util.Date d = parser.parse(s);
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			String formattedDate = formatter.format(d);
-			System.out.println(formattedDate);
+			//System.out.println(formattedDate);
 
 			r.setDate(Date.valueOf(formattedDate));
 
