@@ -15,12 +15,12 @@ public class Scheduler {
 		
 		Database db = new Database();
 		db.getConnection();	
-		db.clearAllRentals();
+		//db.clearAllRentals();
 		
 		CastanetScraper cc = new CastanetScraper();
 		KijijiScraper ks = new KijijiScraper();
 				
-		
+
 				
 		db.addRentals(ks.scrapeAll()); 
 		db.addRentals(cc.scrapeAll()); 

@@ -93,7 +93,7 @@ public class Database {
 			keys.next();
 			int auto_id = keys.getInt(1);
 
-			// addContact(r, auto_id);
+			//addContact(r, auto_id);
 		}
 
 		
