@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import scrapers.CastanetScraper;
-
+import scrapers.CraigslistScraper;
 import scrapers.KijijiScraper;
 
 public class Scheduler {
@@ -16,19 +16,19 @@ public class Scheduler {
 		Database db = new Database();
 		db.getConnection();	
 		//db.clearAllRentals();
+		CraigslistScraper cs = new CraigslistScraper();
 		
 		CastanetScraper cc = new CastanetScraper();
 		KijijiScraper ks = new KijijiScraper();
-				
-
-				
+		
+		db.addRentals(cs.scrapeAll());				
 		db.addRentals(ks.scrapeAll()); 
 		db.addRentals(cc.scrapeAll()); 
 		
 		System.out.println("Finished Scraping :)");
 
 		
-		db.closeConnection();
+		//db.closeConnection();
 
 		
 	//	ks.scrapeAll();

@@ -72,7 +72,7 @@ public class Database {
 			
 
 			String desc = r.getDescription();			
-			desc = desc.substring(0, Math.min(desc.length(), 100));
+			desc = desc.substring(0, Math.min(desc.length(), 390));
 			
 
 			
