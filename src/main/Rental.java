@@ -20,6 +20,7 @@ public class Rental {
 	private String description = "No description available";
 	private String address = "Address not available";
 	private String link = "No link available";
+	private String img;
 	
 	//Note sql.Date is used instead of util.Date
 	private Date date;
@@ -37,6 +38,15 @@ public class Rental {
 	
 	
 	//Setters and Getters	
+	
+	
+	public String getImg(){
+		return img;
+	}
+	
+	public void setImg(String img){
+		this.img = img;
+	}
 	
 	public String getTitle() {
 		return title;

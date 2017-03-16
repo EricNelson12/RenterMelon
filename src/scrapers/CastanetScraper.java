@@ -31,7 +31,7 @@ public class CastanetScraper implements Scraper {
 			
 			return Date.valueOf(returnDate);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			// fix this eventually brit pls
 			System.out.println("oops");
 			return null;
 		}
@@ -62,6 +62,15 @@ public class CastanetScraper implements Scraper {
 			Document doc = Jsoup.connect(l.attr("abs:href")).get();
 
 			R.setLink(doc.location());
+			
+			//image
+			Elements image = doc.getElementsByClass("image_container");
+			Element im = image.get(0).child(0);
+			if (im.hasAttr("href"))
+				im = im.child(0);
+			String url = im.absUrl("src");
+			R.setImg(url);
+			
 
 			// title
 			Elements title = doc.getElementsByTag("h1");

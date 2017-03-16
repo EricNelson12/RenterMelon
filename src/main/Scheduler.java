@@ -26,6 +26,7 @@ public class Scheduler {
 		db.addRentals(cc.scrapeAll()); 
 		
 		System.out.println("Finished Scraping :)");
+
 		
 		db.closeConnection();
 

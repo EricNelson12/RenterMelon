@@ -68,6 +68,11 @@ public class KijijiScraper implements Scraper {
 			Elements attributes = rentalPage.select(".ad-attributes tr td");
 
 			// Set attributes
+			if (rentalPage.select(".showing img").size() > 0)
+				R.setImg(rentalPage.select(".showing img").get(0).absUrl("src"));
+			else
+				R.setImg("no image");
+			//^^ brit getting images march 15 
 			R.setDescription(rentalPage.select("#UserContent").text());
 			R.setTitle(element.select(".title *").text());
 			R.setLink(link);
