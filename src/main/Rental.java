@@ -21,6 +21,9 @@ public class Rental {
 	private String address = "Address not available";
 	private String link = "No link available";
 	private String img;
+	public boolean furnished = false; 
+	public boolean pets = false;
+	public boolean smoking = false;
 	
 	//Note sql.Date is used instead of util.Date
 	private Date date;

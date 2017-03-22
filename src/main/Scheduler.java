@@ -22,8 +22,8 @@ public class Scheduler {
 		KijijiScraper ks = new KijijiScraper();
 		
 		db.addRentals(cs.scrapeAll());				
-		db.addRentals(ks.scrapeAll()); 
-		db.addRentals(cc.scrapeAll()); 
+		//db.addRentals(ks.scrapeAll()); 
+		//db.addRentals(cc.scrapeAll()); 
 		
 		System.out.println("Finished Scraping :)");
 

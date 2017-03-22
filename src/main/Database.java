@@ -44,7 +44,8 @@ public class Database {
 	// Add a list of rentals
 	public void addRentals(ArrayList<Rental> R) throws SQLException, ParseException {
 
-		String query = "INSERT into rental (title, address, price, description, link, area, dateAdded, img) VALUES (?,?,?,?,?,?,?,?)";
+		String query = "INSERT into rental (title, address, price, description, link, area, dateAdded, "
+				+ "pets, furn, smoke, img) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
 		for (Rental r : R) {
 			PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -88,7 +89,10 @@ public class Database {
 			ps.setString(5, sourceUrl);
 			ps.setString(6, area);
 			ps.setDate(7, r.getDate());
-			ps.setString(8, r.getImg());
+			ps.setBoolean(8, r.pets);
+			ps.setBoolean(9, r.furnished);
+			ps.setBoolean(10, r.smoking);
+			ps.setString(11, r.getImg());
 
 			ps.execute();
 
@@ -98,7 +102,7 @@ public class Database {
 			keys.next();
 			int auto_id = keys.getInt(1);
 
-			//addContact(r, auto_id);
+			addContact(r, auto_id);
 		}
 
 		

@@ -14,6 +14,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import main.Contact;
 import main.Rental;
 
 public class KijijiScraper implements Scraper {
@@ -27,6 +28,8 @@ public class KijijiScraper implements Scraper {
 	final private int DATE = 0;
 	final private int PRICE = 1;
 	final private int ADDRESS = 2;
+	final private int FURNISHED = 4;
+	final private int PETS = 5;
 
 	// Attribute [0] : 08-Mar-17
 	// Attribute [1] : $1.00
@@ -58,6 +61,7 @@ public class KijijiScraper implements Scraper {
 
 			// Create new rental object
 			Rental R = new Rental();
+			Contact C = new Contact();
 
 			// Connect to url of individual ad
 			String link = element.select("a.title").attr("abs:href");
@@ -72,13 +76,21 @@ public class KijijiScraper implements Scraper {
 				R.setImg(rentalPage.select(".showing img").get(0).absUrl("src"));
 			else
 				R.setImg("no image");
-			//^^ brit getting images march 15 
-			R.setDescription(rentalPage.select("#UserContent").text());
+			//^^ brit getting images march 15
+			String d = rentalPage.select("#UserContent").text();
+			R.setDescription(d);
+			if (!d.toLowerCase().contains("no smoking"))
+				R.smoking = true;
 			R.setTitle(element.select(".title *").text());
 			R.setLink(link);
 			R.setPrice(attributes.get(PRICE).text());
 			setDate(attributes.get(DATE).text(), R);
 			setAddress(attributes.get(ADDRESS).text(), R);
+			if (attributes.get(FURNISHED).text().contains("es"))
+				R.furnished = true;
+			if (attributes.get(PETS).text().contains("es"))
+				R.pets = true;
+			R.setContact(C);
 
 		//	System.out.println(R.toString());
 

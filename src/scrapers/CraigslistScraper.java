@@ -1,7 +1,12 @@
 package scrapers;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -61,6 +66,13 @@ public class CraigslistScraper implements Scraper {
 			R.setAddress(a);
 		}
 		
+		Element d = rentalPage.select(".timeago").first();
+		String dat = d.text();
+		//System.out.println(dat);
+		Date post = parDate(dat);
+		R.setDate(post);
+		
+		
 		
 		//PRICE
 		Elements p = rentalPage.select(".price");
@@ -76,15 +88,41 @@ public class CraigslistScraper implements Scraper {
 		String desc = rentalPage.select("#postingbody").text();
 		desc = desc.substring(24, desc.length()-1);
 		R.setDescription(desc);
-			
 		
+		
+		if(!desc.toLowerCase().contains("no smoking"))
+			R.smoking = true;
+		if (desc.toLowerCase().contains(" furnished") && !desc.toLowerCase().contains("not furnished"))
+			R.furnished = true;
+		if (!desc.toLowerCase().contains("no pet"))
+			R.pets = true;
+		
+		R.setContact(C);
 		rentals.add(R);
-		
+		System.out.printf("%.0f%%\n",(100*(float)k/(float)links.size()));
+		k++;
 		
 		}
 		
 		
 		return rentals;
+	}
+	
+	public Date parDate(String dat){
+		try {
+			DateFormat d1 = new SimpleDateFormat("yyyy-MM-dd h:mma", Locale.US);
+			java.util.Date D1;
+			D1 = d1.parse(dat);
+			DateFormat d2 = new SimpleDateFormat("yyyy-MM-dd");
+			String returnDate = d2.format(D1);
+			
+			return Date.valueOf(returnDate);
+		} catch (ParseException e) {
+			// fixed
+			System.out.println("oops");
+			return null;
+		}
+		
 	}
 
 }

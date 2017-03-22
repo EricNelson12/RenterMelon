@@ -23,15 +23,15 @@ public class CastanetScraper implements Scraper {
 	
 	public Date formatDate(String s) {
 		try {
-			DateFormat d1 = new SimpleDateFormat("MMM d, YYYY");
+			DateFormat d1 = new SimpleDateFormat("MMM d, yyyy");
 			java.util.Date D1;
 			D1 = d1.parse(s);
-			DateFormat d2 = new SimpleDateFormat("YYYY-MM-dd");
+			DateFormat d2 = new SimpleDateFormat("yyyy-MM-dd");
 			String returnDate = d2.format(D1);
 			
 			return Date.valueOf(returnDate);
 		} catch (ParseException e) {
-			// fix this eventually brit pls
+			// fixed
 			System.out.println("oops");
 			return null;
 		}
@@ -78,7 +78,13 @@ public class CastanetScraper implements Scraper {
 
 			// description
 			Elements desc = doc.select(".description");
-			R.setDescription(desc.get(0).text());
+			String d = desc.get(0).text();
+			R.setDescription(d);
+			
+			d = d.toLowerCase();
+			if (!d.contains("no smoking"))
+				R.smoking = true;
+			
 
 			// price
 			Elements price = doc.select(".price");
@@ -119,6 +125,16 @@ public class CastanetScraper implements Scraper {
 
 				case "agent full name":
 					C.setName(nxt);
+					break;
+					
+				case "furnished":
+					if (nxt.equals("Yes"))
+						R.furnished = true;
+					break;
+				
+				case "pet friendly":
+					if (nxt.equals("Yes"))
+						R.pets = true;
 					break;
 
 				case "phone:":
