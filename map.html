@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rental Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+  
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="PaU1xg5anZLGZ03ZebC8iI9TtbzBnei0LQiqOCkG">
+
+    <title>App</title>
+
+    <!-- Styles -->
+    <link href="http://rentermelon.canopykelowna.ca/css/app.css" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script>
+        window.Laravel = {"csrfToken":"PaU1xg5anZLGZ03ZebC8iI9TtbzBnei0LQiqOCkG"};
+    </script>
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+
+                    <!-- Collapsed Hamburger -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <!-- Branding Image -->
+                    <a class="navbar-brand" href="http://rentermelon.canopykelowna.ca">
+                        RenterMelon
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav">
+                        &nbsp;
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Authentication Links -->
+                                                    <li><a href="http://rentermelon.canopykelowna.ca/login">Login</a></li>
+                            <li><a href="http://rentermelon.canopykelowna.ca/register">Register</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </nav>
+
+        
+    <!--
+        Image would be placed here in the HTML
+        Floating left of the table would probably look best
+    -->
+    <table id="rentaldetails">
+        <tr><th>Price</th>
+                    <td>475.00</td></tr>
+                <tr><th>Area</th>
+                    <td>Kelowna</td></tr>
+                <tr><th>Address <button onclick="show()">show</button></th>
+                    <td id="address">1030 El Paso Rd, Kelowna, BC V1X 5G5, Canada</td></tr>
+                <tr><th>Date added</th>
+                    <td>2017-02-16 00:00:00</td></tr></table><p id="rentaldesc">ROOMS AVAILABLE IMMEDIATELY (Unfurnished $475. or Furnished $525.) WANTED - STUDENT or a Responsible Employed Individual with references, to SHARE a SPACEOUS, EXECUTIVE STYLE, CITY VIEW HOME, approx 7 KM from UBCO and located up a steep hill from the BUS STOP. Vehicle recommended. .......The ROOM is available IMMEDIATELY. This VERY SPACEOUS, Executive Style, Recently RENOVATED Home provides a GOR</p>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="http://rentermelon.canopykelowna.ca/js/app.js"></script>
+</body>
+</html>
+
+    <div id="map" style="visibility:hidden;"></div>
+    <script>
+      var map;
+	  
+	  fuction show() {
+		document.getElementById("map").display = "visible";
+	  }
+	  
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+		var geocoder = new google.maps.Geocoder();
+		geocodeAddress(geocoder, map);
+      }
+	  
+	  var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'It's right here bitch!'
+        });
+		
+	  function geocodeAddress(geocoder, resultsMap) {
+        var address = document.getElementById("address").value;
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+	
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5VuOQYcpsyakc9w43OPVe70v5Llb1mYw&callback=initMap"
+    async defer></script>
+  </body>
+</html>
