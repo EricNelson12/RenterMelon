@@ -15,15 +15,15 @@ public class Scheduler {
 		
 		Database db = new Database();
 		db.getConnection();	
-		//db.clearAllRentals();
+		db.clearAllRentals();
 		CraigslistScraper cs = new CraigslistScraper();
 		
 		CastanetScraper cc = new CastanetScraper();
 		KijijiScraper ks = new KijijiScraper();
 		
-		db.addRentals(cs.scrapeAll());				
-		//db.addRentals(ks.scrapeAll()); 
-		//db.addRentals(cc.scrapeAll()); 
+		db.addRentals(cc.scrapeAll());				
+		db.addRentals(ks.scrapeAll()); 
+		db.addRentals(cs.scrapeAll()); 
 		
 		System.out.println("Finished Scraping :)");
 

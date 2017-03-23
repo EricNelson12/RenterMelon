@@ -16,7 +16,7 @@ public class Database {
 
 	// Server Configuration
 	private String userName = "root";
-	private String password = "brit";
+	private String password = "";
 	private String dbms = "mysql";
 	private String serverName = "localhost";
 	private int portNumber = 3306;
@@ -34,7 +34,7 @@ public class Database {
 				connectionProps);
 
 		System.out.println("Connected to database");
-		String q = "USE melontest2";
+		String q = "USE watermelon";
 		Statement s = conn.createStatement();
 		s.executeQuery(q);
 
@@ -111,6 +111,7 @@ public class Database {
 	public void clearAllRentals() throws SQLException{
 		//https://technet.microsoft.com/en-us/library/ms188249(v=sql.105).aspx
 		Statement s = conn.createStatement();
+		s.execute("TRUNCATE TABLE contact");
 		s.execute("TRUNCATE TABLE rental");
 	}
 	

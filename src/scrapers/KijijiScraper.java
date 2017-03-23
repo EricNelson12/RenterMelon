@@ -20,9 +20,9 @@ import main.Rental;
 public class KijijiScraper implements Scraper {
 
 	// Base URI
-	//final private String URL = "http://www.kijiji.ca/b-house-rental/kelowna/c43l1700228";
+	// final private String URL =
+	// "http://www.kijiji.ca/b-house-rental/kelowna/c43l1700228";
 	final private String URL = "http://www.kijiji.ca/b-room-rental-roommate/kelowna/c36l1700228";
-	
 
 	// Index of attributes in table
 	final private int DATE = 0;
@@ -52,57 +52,65 @@ public class KijijiScraper implements Scraper {
 		Elements elements = doc.select(".info-container");
 
 		System.out.println("Connected to: " + doc.baseUri());
-		
-		
+
 		int k = 0;
 
 		// Explore all URLs to rentals on page
 		for (Element element : elements) {
 
-			// Create new rental object
-			Rental R = new Rental();
-			Contact C = new Contact();
+			try {
 
-			// Connect to url of individual ad
-			String link = element.select("a.title").attr("abs:href");
-			Document rentalPage = Jsoup.connect(link).get();
-			//System.out.println("\n\nConnected to: " + rentalPage.baseUri());
+				// Create new rental object
+				Rental R = new Rental();
+				Contact C = new Contact();
 
-			// Get table with all of the attributes
-			Elements attributes = rentalPage.select(".ad-attributes tr td");
+				// Connect to url of individual ad
+				String link = element.select("a.title").attr("abs:href");
+				Document rentalPage = Jsoup.connect(link).get();
+				// System.out.println("\n\nConnected to: " +
+				// rentalPage.baseUri());
 
-			// Set attributes
-			if (rentalPage.select(".showing img").size() > 0)
-				R.setImg(rentalPage.select(".showing img").get(0).absUrl("src"));
-			else
-				R.setImg("no image");
-			//^^ brit getting images march 15
-			String d = rentalPage.select("#UserContent").text();
-			R.setDescription(d);
-			if (!d.toLowerCase().contains("no smoking"))
-				R.smoking = true;
-			R.setTitle(element.select(".title *").text());
-			R.setLink(link);
-			R.setPrice(attributes.get(PRICE).text());
-			setDate(attributes.get(DATE).text(), R);
-			setAddress(attributes.get(ADDRESS).text(), R);
-			if (attributes.get(FURNISHED).text().contains("es"))
-				R.furnished = true;
-			if (attributes.get(PETS).text().contains("es"))
-				R.pets = true;
-			R.setContact(C);
+				// Get table with all of the attributes
+				Elements attributes = rentalPage.select(".ad-attributes tr td");
 
-		//	System.out.println(R.toString());
+				// Set attributes
+				if (rentalPage.select(".showing img").size() > 0)
+					R.setImg(rentalPage.select(".showing img").get(0).absUrl("src"));
+				else
+					R.setImg("no image");
+				// ^^ brit getting images march 15
+				String d = rentalPage.select("#UserContent").text();
+				R.setDescription(d);
+				if (!d.toLowerCase().contains("no smoking"))
+					R.smoking = true;
+				R.setTitle(element.select(".title *").text());
+				R.setLink(link);
+				R.setPrice(attributes.get(PRICE).text());
+				setDate(attributes.get(DATE).text(), R);
+				setAddress(attributes.get(ADDRESS).text(), R);
+				if (attributes.get(FURNISHED).text().contains("es"))
+					R.furnished = true;
+				if (attributes.get(PETS).text().contains("es"))
+					R.pets = true;
+				R.setContact(C);
 
-			// Add to list of rentals
-			rentals.add(R);
-			System.out.printf("%.0f%%\n",(100*(float)k/(float)elements.size()));
-			k++;
+				// System.out.println(R.toString());
+
+				// Add to list of rentals
+				rentals.add(R);
+				System.out.printf("%.0f%%\n", (100 * (float) k / (float) elements.size()));
+				k++;
+
+			} catch (Exception e) {
+
+				System.out.println(e.toString());
+			}
 			
 
 		}
 
 		return rentals;
+
 	}
 
 	// Advanced Parsing Methods
@@ -129,7 +137,7 @@ public class KijijiScraper implements Scraper {
 			java.util.Date d = parser.parse(s);
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			String formattedDate = formatter.format(d);
-			//System.out.println(formattedDate);
+			// System.out.println(formattedDate);
 
 			r.setDate(Date.valueOf(formattedDate));
 
@@ -138,6 +146,5 @@ public class KijijiScraper implements Scraper {
 		}
 
 	}
-
 
 }
