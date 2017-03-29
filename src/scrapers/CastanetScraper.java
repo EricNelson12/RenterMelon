@@ -118,6 +118,14 @@ public class CastanetScraper implements Scraper {
 				case "post date:":
 					R.setDate(formatDate(nxt));
 					break;
+					
+				case "bedrooms":
+					R.bed = (int) Math.round(Float.parseFloat(nxt));
+					break;
+				
+				case "bathrooms":
+					R.bath = (int) Math.round(Float.parseFloat(nxt));
+					break;
 
 				case "name:":
 					C.setName(nxt);

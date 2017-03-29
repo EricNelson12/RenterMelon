@@ -74,6 +74,12 @@ public class CraigslistScraper implements Scraper {
 				String price = p.get(0).text();
 				R.setPrice(price);
 			}
+			
+			Elements b = rentalPage.select(".attrgroup span").first().children();
+			String bedrms = b.first().text();
+			R.bed = Integer.parseInt(bedrms.substring(0, 1)); 
+			String bathrms = b.last().text();
+			R.bath = Integer.parseInt(bathrms.substring(0, 1)); 
 
 			// title
 			String title = rentalPage.select("#titletextonly").text();

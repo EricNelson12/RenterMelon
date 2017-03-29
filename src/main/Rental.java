@@ -24,6 +24,11 @@ public class Rental {
 	public boolean furnished = false; 
 	public boolean pets = false;
 	public boolean smoking = false;
+	public int bed = 1;
+	public int bath = 1; 
+	//hey Eric I hope you don't mind that I started making variables public because james says sgetters are evil
+	//and also i'm lazy
+	//luv brittany
 	
 	//Note sql.Date is used instead of util.Date
 	private Date date;

@@ -15,7 +15,7 @@ public class Scheduler {
 		
 		Database db = new Database();
 		db.getConnection();	
-		db.clearAllRentals();
+		//db.clearAllRentals();
 		CraigslistScraper cs = new CraigslistScraper();
 		
 		CastanetScraper cc = new CastanetScraper();

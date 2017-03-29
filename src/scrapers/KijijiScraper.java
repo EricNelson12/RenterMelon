@@ -22,14 +22,16 @@ public class KijijiScraper implements Scraper {
 	// Base URI
 	// final private String URL =
 	// "http://www.kijiji.ca/b-house-rental/kelowna/c43l1700228";
-	final private String URL = "http://www.kijiji.ca/b-room-rental-roommate/kelowna/c36l1700228";
+	final private String URL = "http://www.kijiji.ca/b-house-rental/kelowna/c43l1700228";
 
 	// Index of attributes in table
 	final private int DATE = 0;
 	final private int PRICE = 1;
 	final private int ADDRESS = 2;
-	final private int FURNISHED = 4;
-	final private int PETS = 5;
+	final private int FURNISHED = 7;
+	final private int PETS = 8;
+	final private int BED = 4;
+	final private int BATH = 5;
 
 	// Attribute [0] : 08-Mar-17
 	// Attribute [1] : $1.00
@@ -92,6 +94,10 @@ public class KijijiScraper implements Scraper {
 					R.furnished = true;
 				if (attributes.get(PETS).text().contains("es"))
 					R.pets = true;
+				String beds = attributes.get(BED).text();
+				R.bed = (int) Math.round(Float.parseFloat(beds.substring(0, beds.indexOf(" "))));
+				String baths = attributes.get(BATH).text();
+				R.bath = (int) Math.round(Float.parseFloat(baths.substring(0, baths.indexOf(" "))));
 				R.setContact(C);
 
 				// System.out.println(R.toString());
