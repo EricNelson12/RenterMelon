@@ -6,13 +6,6 @@ public class Rental {
 	
 	//Properties//
 	
-
-//	private enum area {
-//		Kelowna,Penticton,BlackMountain,DilworthMountain,Ellison,Glenmore,
-//		JoeRich,KelownaNorth,KelownaSouth,LowerMission,NorthGlenmore,RutlandNorth,
-//		RutlandSouth,KelownaSouthEast,SpringfieldSpall,UpperMission
-//	}
-	
 	private String area = "Not available";	
 	private int Rid;
 	private String price = "Contact for price";
@@ -26,6 +19,8 @@ public class Rental {
 	public boolean smoking = false;
 	public int bed = 1;
 	public int bath = 1; 
+	public double lng = -119.5947451d;
+	public double lat = 49.8996076d;
 	//hey Eric I hope you don't mind that I started making variables public because james says sgetters are evil
 	//and also i'm lazy
 	//luv brittany

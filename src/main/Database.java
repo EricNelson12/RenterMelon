@@ -16,9 +16,10 @@ public class Database {
 
 	// Server Configuration
 	private String userName = "root";
-	private String password = "brit";
+	private String password = "";
 	private String dbms = "mysql";
 	private String serverName = "localhost";
+	private String DBNAME = "USE watermelon";
 	private int portNumber = 3306;
 
 	static Connection conn = null;
@@ -34,7 +35,7 @@ public class Database {
 				connectionProps);
 
 		System.out.println("Connected to database");
-		String q = "USE melontest2";
+		String q = DBNAME;
 		Statement s = conn.createStatement();
 		s.executeQuery(q);
 
@@ -45,7 +46,7 @@ public class Database {
 	public void addRentals(ArrayList<Rental> R) throws SQLException, ParseException {
 
 		String query = "INSERT into rental (title, address, price, description, link, area, dateAdded, "
-				+ "pets, furn, smoke, img, bed, bath) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "pets, furn, smoke, img, bed, bath, lng ,lat ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		for (Rental r : R) {
 			PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -95,6 +96,8 @@ public class Database {
 			ps.setString(11, r.getImg());
 			ps.setInt(12, r.bed);
 			ps.setInt(13, r.bath);
+			ps.setDouble(14, r.lng);
+			ps.setDouble(15, r.lat);
 
 			ps.execute();
 
